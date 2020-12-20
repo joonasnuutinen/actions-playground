@@ -8,10 +8,10 @@ on:
 jobs:
   test_job:
     runs-on: ubuntu-18.04
+    env:
+      SKIP: ${{ contains(join(github.event.commits.*.message), '#skip') }}
     steps:
       - uses: actions/checkout@v2
-      - env:
-        SKIP: ${{ contains(join(github.event.commits.*.message), '#skip') }}
       - name: commit messages
         env:
           COMMIT_MESSAGES: ${{ toJson(github.event.commits.*.message) }}
