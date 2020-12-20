@@ -5,11 +5,12 @@ on:
     branches:
       - main
 
+env:
+  SKIP: ${{ contains(join(github.event.commits.*.message), '#skip') }}
+
 jobs:
   test_job:
     runs-on: ubuntu-18.04
-    env:
-      SKIP: ${{ contains(join(github.event.commits.*.message), '#skip') }}
     steps:
       - uses: actions/checkout@v2
       - name: commit messages
