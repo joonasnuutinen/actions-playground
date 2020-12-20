@@ -26,6 +26,6 @@ jobs:
           CONTAINS_SKIP: ${{ contains(join(github.event.commits.*.message), '#skip') }}
         run: echo "$CONTAINS_SKIP"
       - name: if not skip
-        if: ${{ !$SKIP }}
+        if: ${{ SKIP }}
         run: echo "Not skipped, value of SKIP is $SKIP"
 
